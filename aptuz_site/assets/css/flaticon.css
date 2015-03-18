@@ -1,0 +1,166 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("../fonts/flaticon.eot");
+	src: url("../fonts/flaticon.eot#iefix") format("embedded-opentype"),
+	url("../fonts/flaticon.woff") format("woff"),
+	url("../fonts/flaticon.ttf") format("truetype"),
+	url("../fonts/flaticon.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Flaticon_1";
+	src: url("../fonts/flaticon_1.eot");
+	src: url("../fonts/flaticon_1.eot#iefix") format("embedded-opentype"),
+	url("../fonts/flaticon_1.woff") format("woff"),
+	url("../fonts/flaticon_1.ttf") format("truetype"),
+	url("../fonts/flaticon_1.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Flaticon_2";
+	src: url("../fonts/flaticon_2.eot");
+	src: url("../fonts/flaticon_2.eot#iefix") format("embedded-opentype"),
+	url("../fonts/flaticon_2.woff") format("woff"),
+	url("../fonts/flaticon_2.ttf") format("truetype"),
+	url("../fonts/flaticon_2.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+	font-family: Flaticon;
+    font-size: inherit;
+	font-style: normal;
+}
+[class^="flaticon_1-"]:before, [class*=" flaticon_1-"]:before,
+[class^="flaticon_1-"]:after, [class*=" flaticon_1-"]:after {   
+	font-family: Flaticon_1;
+    font-size: inherit;
+	font-style: normal;
+}
+[class^="flaticon_2-"]:before, [class*=" flaticon_2-"]:before,
+[class^="flaticon_2-"]:after, [class*=" flaticon_2-"]:after {   
+	font-family: Flaticon_2;
+    font-size: inherit;
+	font-style: normal;
+}
+.flaticon-ascendant6:before {
+	content: "\e000";
+}
+.flaticon-bars11:before {
+	content: "\e001";
+}
+.flaticon-big72:before {
+	content: "\e002";
+}
+.flaticon-cloud231:before {
+	content: "\e003";
+}
+.flaticon-cloud297:before {
+	content: "\e004";
+}
+.flaticon-concentrical:before {
+	content: "\e005";
+}
+.flaticon-hands-shake:before {
+	content: "\e006";
+}
+.flaticon-hosting:before {
+	content: "\e007";
+}
+.flaticon-link58:before {
+	content: "\e008";
+}
+.flaticon-mobile14:before {
+	content: "\e009";
+}
+.flaticon-server26:before {
+	content: "\e00a";
+}
+.flaticon-shake:before {
+	content: "\e00b";
+}
+.flaticon-synchronization1:before {
+	content: "\e00c";
+}
+.flaticon-turn:before {
+	content: "\e00d";
+}
+.flaticon-two205:before {
+	content: "\e00e";
+}
+.flaticon-white57:before {
+	content: "\e00f";
+}
+.flaticon_2-call5:before {
+	content: "\e000";
+}
+.flaticon_2-chevron18:before {
+	content: "\e001";
+}
+.flaticon_2-chevron20:before {
+	content: "\e002";
+}
+.flaticon_2-chevron21:before {
+	content: "\e003";
+}
+.flaticon_2-chevron22:before {
+	content: "\e004";
+}
+.flaticon_2-email103:before {
+	content: "\e005";
+}
+.flaticon_2-facebook12:before {
+	content: "\e006";
+}
+.flaticon_2-facebook29:before {
+	content: "\e007";
+}
+.flaticon_2-github13:before {
+	content: "\e008";
+}
+.flaticon_2-github17:before {
+	content: "\e009";
+}
+.flaticon_2-google110:before {
+	content: "\e00a";
+}
+.flaticon_2-google116:before {
+	content: "\e00b";
+}
+.flaticon_2-linkedin11:before {
+	content: "\e00c";
+}
+.flaticon_2-linkedin12:before {
+	content: "\e00d";
+}
+.flaticon_2-linkedin2:before {
+	content: "\e00e";
+}
+.flaticon_2-map6:before {
+	content: "\e00f";
+}
+.flaticon_2-social19:before {
+	content: "\e010";
+}
+.flaticon_2-social38:before {
+	content: "\e011";
+}
+.flaticon_2-social5:before {
+	content: "\e012";
+}
+.flaticon_2-twitter12:before {
+	content: "\e013";
+}
+.flaticon_2-youtube18:before {
+	content: "\e014";
+}
+.flaticon_2-youtube7:before {
+	content: "\e015";
+}
+.flaticon_1-thumb36:before {
+	content: "\e000";
+}
+

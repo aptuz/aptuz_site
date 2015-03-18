@@ -1,0 +1,32 @@
+{% load i18n mezzanine_tags comment_tags %}
+<div id="comments" class="grid-14 x-center">
+<!-- <h3 class="bold rem f-22">{{ comments_count }}{% trans "Comments" %}</h3> -->
+{% if settings.COMMENTS_DISQUS_SHORTNAME %}
+{% include "generic/includes/disqus_comments.html" %}
+{% else %}
+{% block extra_js %}
+<script>
+$(function() {
+    $('.reply').click(function() {
+        $('.comment-reply-form').hide();
+        $(this).siblings('.comment-reply-form').toggle();
+    });
+});
+</script>
+{% endblock %}
+<style>.input_id_honeypot {display:none !important;}</style>
+{% comment_thread object_for_comments %}
+<h3 class="txt-center rem f-20 mt-20">{% trans "Leave a Reply" %}</h3>
+<form method="post" id="comment" action="{{ comment_url }}#comment" class="grid-14 x-center">
+    {% if not request.POST.replied_to %}
+    {% fields_for posted_comment_form %}
+    {% else %}
+    {% fields_for unposted_comment_form %}
+    {% endif %}
+    <div class="form-actions">
+        <input class="btn btn-primary btn-lg" type="submit" value="{% trans "Comment" %}">
+    </div>
+</form>
+{% endif %}
+</div>
+</div>

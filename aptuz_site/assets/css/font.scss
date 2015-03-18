@@ -1,0 +1,70 @@
+$font-sizes : 8 9 10 11 12 14 16 18 20 22 24 26 28 36 48 60 72;
+
+@if $base-font == 18{
+	/*
+	---------------------base font-size - 18px with rem -------------------*/
+	@each $font-size in $font-sizes {
+		$rem : $font-size/18;
+		.rem.f-#{$font-size}{
+			font-size : $font-size + px;
+			font-size : $rem + rem; /* #{$font-size}/18 = #{$rem} */
+		}
+	}
+	/*
+	---------------------base font-size - 18px with em -------------------*/
+	@each $font-size in $font-sizes {
+		$em : $font-size/18;
+		.em.f-#{$font-size}{
+			font-size : $font-size + px;
+			font-size : $em + em; /* #{$font-size}/18 = #{$em} */
+		}
+	}	
+}
+@if $base-font == 16{
+	/*
+	---------------------base font-size - 16px with rem -------------------*/
+	@each $font-size in $font-sizes {
+		$rem : $font-size/16;
+		.rem.f-#{$font-size}{
+			font-size : $font-size + px;
+			font-size : $rem + rem; /* #{$font-size}/16 = #{$rem} */
+		}
+	}
+	/*
+	---------------------base font-size - 16px with em -------------------*/
+	@each $font-size in $font-sizes {
+		$em : $font-size/16;
+		.em.f-#{$font-size}{
+			font-size : $font-size + px;
+			font-size : $em + em; /* #{$font-size}/18 = #{$em} */
+		}
+	}
+}
+@if $base-font == 14{
+	/*
+	---------------------base font-size - 14px with rem -------------------*/
+	@each $font-size in $font-sizes {
+		$rem : $font-size/14;
+		.rem.f-#{$font-size}{
+			font-size : $font-size + px;
+			font-size : $rem + rem; /* #{$font-size}/14 = #{$rem} */
+		}
+	}
+	/*
+	---------------------base font-size - 14px with em -------------------*/
+	@each $font-size in $font-sizes {
+		$em : $font-size/14;
+		.em.f-#{$font-size}{
+			font-size : $font-size + px;
+			font-size : $em + em; /* #{$font-size}/18 = #{$em} */
+		}
+	}
+}
+
+$font-weights : 100 200 300 400 500 600 700 800 900;
+
+@each $font-weight in $font-weights {
+	.b-#{$font-weight}{
+		font-weight : $font-weight;
+	}
+}

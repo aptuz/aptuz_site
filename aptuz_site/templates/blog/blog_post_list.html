@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% load i18n future mezzanine_tags blog_tags keyword_tags disqus_tags %}
+
+{% block meta_title %}{% if page %}{{ page.richtextpage.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
+{% block extra_head %}
+    <meta itemprop="name" content="{{ page.meta_title }}">
+    <meta itemprop="description" content="{{ page.description }}">
+    <meta name="description" content="{{ page.description }}">   
+    <meta name="keywords" content="{% spaceless %}{% keywords_for page as keywords %}{% for keyword in keywords %}{% if not forloop.first %}, {% endif %}{{ keyword }}{% endfor %}{% endspaceless %}">
+{% endblock %}
+{% block meta_keywords %}{% metablock %}
+{% keywords_for page as keywords %}
+{% for keyword in keywords %}
+    {% if not forloop.first %}, {% endif %}
+    {{ keyword }}
+{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ page.description }}
+{% endmetablock %}{% endblock %}
+
+{% block title %}
+{% if page %}
+{% editable page.title %}{{ page.title }}{% endeditable %}
+{% endif %}
+{% endblock %}
+
+{% block breadcrumb_menu %}
+{{ block.super }}
+{% if tag or category or year or month or author %}
+<li>{% spaceless %}
+{% if tag %}
+    {% trans "Tag:" %} {{ tag }}
+{% else %}{% if category %}
+    {% trans "Category:" %} {{ category }}
+{% else %}{% if year or month %}
+    {% if month %}{{ month }}, {% endif %}{{ year }}
+{% else %}{% if author %}
+    {% trans "Author:" %} {{ author.get_full_name|default:author.username }}
+{% endif %}{% endif %}{% endif %}{% endif %}
+{% endspaceless %}
+</li>
+{% endif %}
+{% endblock %}
+
+{% block main %}
+<section>
+    <div class="container">
+    {% if tag or category or year or month or author %}
+        {% block blog_post_list_filterinfo %}
+            <p>
+                {% if tag %}
+                    {% trans "Viewing posts tagged" %} {{ tag }}
+                {% else %}
+                    {% if category %}
+                        {% trans "Viewing posts for the category" %} {{ category }}
+                    {% else %}
+                        {% if year or month %}
+                            {% trans "Viewing posts from" %} 
+                            {% if month %}
+                                {{ month }}, 
+                            {% endif %}
+                            {{ year }}
+                        {% else %}
+                            {% if author %}
+                                {% trans "Viewing posts by" %}
+                                {{ author.get_full_name|default:author.username }}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+                {% endblock %}
+            </p>
+    {% else %}
+        <!-- {% if page %}
+            {% block blog_post_list_pagecontent %}
+            {% editable page.richtextpage.content %}
+            {{ page.richtextpage.content|richtext_filters|safe }}
+            {% endeditable %}
+            {% endblock %}
+        {% endif %} -->
+    {% endif %}
+
+    {% for blog_post in blog_posts.object_list %}
+    <div class="grid-12 bP-S mt-20 bg-white shadow mb-20">
+    
+{% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
+{% block blog_post_list_post_featured_image %}
+<a href="{{ blog_post.get_absolute_url }}" class="fE-img">
+    <img class="img-thumbnail pull-left" src="{{ MEDIA_URL }}{{blog_post.featured_image}}" alt="{{blog_post.title}}" />
+</a>
+{% endblock %}
+{% endif %}
+    <div class="grid-14 x-center ml-0 mr-0 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}cWrap{% endif %}">
+    <div class="grid-16 x-center bP-T bg-white pt-30 pb-20 m-0">
+    {% block blog_post_list_post_title %}
+    {% editable blog_post.title %}
+    <div class="grid-16">
+        <h2 class="rem f-28 b-500 txt-left">
+            <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+        </h2>
+    </div>
+    <div class="pos-a r date-dd">
+
+        <span class="red">
+            <span class="rem f-16 pl-5">
+                {{ blog_post.publish_date|date:"d, M Y" }} {{ blog_post.publish_date|time:"H:i" }} <span class="lower">{{ blog_post.publish_date|time:"A" }}</span>
+            </span>
+        </span>
+    </div>
+    
+    
+    {% endeditable %}
+    {% endblock %}
+    {% block blog_post_list_post_metainfo %}
+    <h6 class="post-meta">
+        {% with blog_post.categories.all as categories %}
+        {% if categories %}
+        {% for category in categories %}
+        <a href="{% url "blog_post_list_category" category.slug %}" class="b-500 red underline">{{ category|capfirst }}</a>{% if not forloop.last %}<span class="pl-5">,</span>{% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </h6>
+{% endblock %}
+</div>
+{% block blog_post_list_post_content %}
+{% editable blog_post.content %}
+<div class="grid-16 b-400 mr-0 p-5">
+    {{ blog_post.description_from_content|safe|truncatechars:250 }}
+    <a href="{{ blog_post.get_absolute_url }}" class="red rM">{% trans "read more" %}</a>
+</div>
+{% endeditable %}
+{% endblock %}
+
+{% block blog_post_list_post_links %}
+<div class="blog-list-detail p-10 grid-16">
+    {% keywords_for blog_post as tags %}
+    {% if tags %}
+    <ul class="list-inline tags">
+    {% spaceless %}
+    <li>{% trans "Tags" %}:</li>
+    {% for tag in tags %}
+    <li><a href="{% url "blog_post_list_tag" tag.slug %}" class="tag">{{ tag }}</a></li>
+    {% endfor %}
+    {% endspaceless %}
+    </ul>
+    {% endif %}
+    {% if blog_post.allow_comments %}
+    {% endif %}
+</div>
+{% endblock %}
+</div>
+</div>
+{% endfor %}
+
+{% pagination_for blog_posts %}
+
+{% if settings.COMMENTS_DISQUS_SHORTNAME %}
+{% include "generic/includes/disqus_counts.html" %}
+{% endif %}
+</div>
+</section>
+{% endblock %}
+
+{% block right_panel %}
+{% include "blog/includes/filter_panel.html" %}
+{% endblock %}

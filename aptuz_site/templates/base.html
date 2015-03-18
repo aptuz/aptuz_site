@@ -1,0 +1,326 @@
+<!doctype html>
+<html itemscope itemtype="http://schema.org/Article" lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+{% load pages_tags mezzanine_tags i18n future staticfiles %}
+
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+        <meta name="google-site-verification" content="bTgB8HJP9oDYFzoafQ0yZkth-5xmN5DkXYK2BYzTBTI" />
+        <meta itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" />
+        <meta itemprop="streetAddress" content="4th Floor Tirumala Mansion,Plot No.120,  Kavuri Hills Phase 1,  Jubilee Hills" />
+        <meta itemprop="addressLocality" content="Hyderabad" />
+        <meta itemprop="addressRegion" content="Telangana" />
+        <meta itemprop="postalCode" content="500033" />
+        <meta itemprop="addressCountry" content="India" />
+        <meta name="msvalidate.01" content="A28F657F5FB0ED901C9F09F5FA04FD13" />
+        <title>
+            {% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}
+        </title>
+        <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+
+        {% ifinstalled mezzanine.blog %}
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+            <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+        {% endifinstalled %}
+
+        {% compress css %}
+            <link rel="stylesheet" href="{% static "css/all.min.css" %}">
+            {% block extra_css %}{% endblock %}
+        {% endcompress %}
+        {% block extra_head %}{% endblock %}
+        <script type="application/ld+json">
+            { "@context" : "http://schema.org",
+              "@type" : "Organization",
+              "name" : "Aptuz Technology Solutions",
+              "url" : "http://www.aptuz.com",
+              "contactPoint" : [
+                { "@type" : "ContactPoint",
+                  "telephone" : "+(91)-9491754728",
+                  "contactType" : "Product Development"
+                } ],
+                "sameAs" :[ "https://www.facebook.com/aptuz",
+                            "https://twitter.com/aptuz",
+                            "https://www.linkedin.com/company/aptuz-technology-solutions"]
+            }
+        </script>
+    </head>
+
+    <body id="{% block body_id %}body{% endblock %}">
+        <!-- Google Tag Manager -->
+            <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-59H8H5"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-59H8H5');</script>
+        <!-- End Google Tag Manager -->
+        <!-- Facebook like button -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <!-- End Facebook like button -->
+        <header>
+            <div class="row mb-0">
+                <div class="grid- pull-r pr-35">
+                    <a href="https://www.facebook.com/aptuz" target="_blank" class="red rem f-18 mr-10"> 
+                        <i class="flaticon_2-facebook12"></i>
+                    </a>
+                    <a href="https://twitter.com/aptuz" target="_blank" class="red rem f-18 mr-10"> 
+                        <i class="flaticon_2-social19"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/aptuz-technology-solutions" target="_blank" class="red rem f-18 mr-10"> 
+                        <i class="flaticon_2-linkedin11"></i>
+                    </a>
+                    <a href="https://plus.google.com/+AptuzTechnologySolutions/posts" target="_blank" class="red rem f-18 mr-10"> 
+                        <i class="flaticon_2-google116"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="container">
+                <!-- **Logo - End** -->
+                <div id="logo">
+                    <h2> 
+                        <a itemprop="url" href="http://www.aptuz.com" title="Aptuz Technology Solutions" >Aptuz</a>
+                        <span>Technology Solutions </span>
+                    </h2>
+                </div><!-- **Logo - End** -->
+                
+                <!-- **Navigation** -->
+                <nav id="main-menu" class="hide-mobile">
+                    <ul>
+                        <li>
+                            <a href="/" title="Home"> 
+                                Home 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/about-us/" title="About Us"> 
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/services/" title="Services"> 
+                                Services 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/blog/" title="Blog"> 
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/career/" title="Career"> 
+                                Career
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/contact-us/" title="Contact"> 
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- **Navigation - End** -->  
+                <div class="mobi-nav show-mobile y-center">
+                    <span class="pos-a xy-center"></span>
+                </div>    
+            </div>
+        </header>
+        <nav class="mob-main-nav show-mobile">
+            <ul>
+                <li class="txt-center p-10 rem f-20" style="padding:17px;">
+                    Menu
+                </li>
+                <li>
+                    <a href="/" title="Home"> 
+                        Home 
+                    </a>
+                </li>
+                <li>
+                    <a href="/about-us/" title="About Us"> 
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <a href="/services/" title="Services"> 
+                        Services 
+                    </a>
+                </li>
+                <li>
+                    <a href="/blog/" title="Blog"> 
+                        Blog
+                    </a>
+                </li>
+                <li>
+                    <a href="/career/" title="Career"> 
+                        Career
+                    </a>
+                </li>
+                <li>
+                    <a href="/contact-us/" title="Contact"> 
+                        Contact
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% block main %}{% endblock %}
+        
+        <footer>
+            <div class="container">
+                <div class="grid-3 hide-mobile mt-10">
+                    <nav>
+                        <ul>
+                            <li class="p-10 rem f-22">
+                                About Aptuz
+                            </li>
+                            <li>
+                                <a href="/" title="Home"> 
+                                    Home 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/about-us/" title="About Us"> 
+                                    About Us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/services/" title="Services"> 
+                                    Services 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/blog/" title="Blog"> 
+                                    Blog
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/career/" title="Career"> 
+                                    Career
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/contact-us/" title="Contact"> 
+                                    Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="grid-5 hide-mobile prefix-1 mt-10">
+                    <nav>
+                        <ul>
+                            <li class="p-10 rem f-22">
+                                Our Services
+                            </li>
+                            <li>
+                                <a href="/services/#product_engineering" title="Product Engineering"> 
+                                    Product Engineering 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/services/#cloud_consulting" title="Cloud Strategy and Consulting"> 
+                                    Cloud Strategy and Consulting
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/services/#cloud_application_services" title="Cloud Application Services"> 
+                                    Cloud Application Services
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/services/#bi_services" title="BI Services"> 
+                                    BI Services
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="grid-4 hide-mobile mt-10 mr-0">
+                    <nav>
+                        <ul>
+                            <li>
+                                <h3 class="txt-center dark-grey p-5 rem f-18">
+                                    <i class="flaticon_2-map6"></i>
+                                    &nbsp;<span class="b-500">Address</span>
+                                </h3>
+                                <address class="txt-center b-400 rem f-14 white">
+                                    4th Floor Tirumala Mansion, Plot No.120, <br /> 
+                                    Kavuri Hills Phase 1, <br /> 
+                                    Jubilee Hills, Hyderabad
+                                </address>
+                            </li>
+                            <li>
+                                <h3 class="txt-center dark-grey mt-10 rem f-18">
+                                    <i class="flaticon_2-call5"></i>&nbsp;
+                                    <span class="b-500">Call Us</span>
+                                </h3>
+                                <div class="txt-center b-400 rem f-14 white">
+                                    <span>+1-469-888-6894</span><br />
+                                    <span>+(91)-9491754728</span>
+                                </div>
+                            </li>
+                            <li>
+                                <h3 class="txt-center dark-grey mt-10 rem f-18">
+                                    <i class="flaticon_2-email103"></i>&nbsp;
+                                    <span class="b-500">Email Us</span>
+                                </h3>
+                                <div class="txt-center b-400 rem f-14">
+                                    <a href="mailto:info@aptuz.com" class="white">info@aptuz.com</a>
+                                </div> 
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="grid-3 hide-mobile prefix-1 mt-10 mr-0">
+                    <nav>
+                        <ul>
+                            <li class="p-10 rem f-22">
+                                Follow Us
+                            </li>
+                            <li>
+                                <div class="fb-like" data-href="https://www.facebook.com/aptuz" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                            </li>
+                            <li>
+                                <a class="twitter-follow-button"
+                                    href="https://twitter.com/aptuz"
+                                    data-show-count="true"
+                                    data-lang="en">
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Place this tag where you want the widget to render. -->
+                                <div class="g-follow" data-annotation="bubble" data-height="20" data-href="https://plus.google.com/+AptuzTechnologySolutions/" data-rel="author"></div>
+                            </li>
+                            <!-- <li>
+                                <a href="https://plus.google.com/+AptuzTechnologySolutions/posts" target="_blank"> 
+                                    <i class="flaticon_2-google110"></i>&nbsp;Google Plus
+                                </a>
+                            </li> -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="foo-main">
+                <p class="txt-center rem f-14 white"> 
+                    &copy; 2015 Aptuz Technology Solutions. All rights reserved. 
+                </p>
+            </div>
+        </footer>
+        {% compress js %}
+            <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
+            <script type="text/javascript" src="{% static "js/main.js"%}"></script>
+        {% block extra_js %}{% endblock %}
+        {% endcompress %}
+        {% include "includes/footer_scripts.html" %}
+        <!--[if lt IE 9]>
+        <script src="{% static "js/html5shiv.js" %}"></script>
+        <script src="{% static "js/respond.min.js" %}"></script>
+        <![endif]-->
+    </body>
+</html>

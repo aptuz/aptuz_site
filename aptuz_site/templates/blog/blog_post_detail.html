@@ -1,0 +1,230 @@
+{% extends "blog/blog_post_list.html" %}
+
+{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n future disqus_tags %}
+
+{% block meta_title %}{{ blog_post.meta_title }}{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow-night-eighties.min.css">
+    <meta property="og:title" content="{{ blog_post.title }}" />
+    <meta property="og:url" content="http://www.aptuz.com{{ blog_post.get_absolute_url }}" />
+    {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
+        <meta property="og:image" content="http://www.aptuz.com{{ MEDIA_URL }}{{blog_post.featured_image}}" />
+    {% endif %}
+    <meta property="og:site_name" content="Aptuz Technology Solutions" />
+    <meta property="og:description" content="{{ blog_post.description }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="en_us" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@aptuz">
+    <meta name="twitter:url" content="http://www.aptuz.com{{ blog_post.get_absolute_url }}">
+    <meta name="twitter:title" content="{{ blog_post.title }}">
+    <meta name="twitter:description" content="{{ blog_post.description }}">
+    <meta name="twitter:image:src" content="http://www.aptuz.com{{ MEDIA_URL }}{{blog_post.featured_image}}">
+{% endblock %}
+{% block meta_keywords %}{% metablock %}
+{% keywords_for blog_post as tags %}
+{% for tag in tags %}{% if not forloop.first %}, {% endif %}{{ tag }}{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ blog_post.description }}
+{% endmetablock %}{% endblock %}
+
+{% block breadcrumb_menu %}
+{{ block.super }}
+<li class="active">{{ blog_post.title }}</li>
+{% endblock %}
+
+{% block main %}
+<section>
+<div class="container pt-30">
+    {% block title %}
+        {% editable blog_post.title %}
+            <h1 class="rem f-48 txt-center b-500">{{ blog_post.title }}</h1>
+        {% endeditable %}
+    {% endblock %}
+    {% block blog_post_detail_postedby %}
+    {% editable blog_post.publish_date %}
+    <h6 class="post-meta txt-center b-500 mb-10">
+        {% trans "Published" %}:
+        {{ blog_post.publish_date|date:"d, F Y" }} {{ blog_post.publish_date|time:"H:i" }} <span class="lower">{{ blog_post.publish_date|time:"A" }}</span>
+        {% trans "by" %}
+        {% with blog_post.user as author %}
+        <a href="{% url "blog_post_list_author" author %}" class="red underline capitalize">{{ author.get_full_name|default:author.username }}</a>
+        {% endwith %}
+    </h6>
+    {% endeditable %}
+    {% endblock %}
+    <div class="grid-14 bg-white mb-20 shadow push-1"> 
+    {% block blog_post_detail_featured_image %}
+    {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
+    <img class="img-responsive" src="{{ MEDIA_URL }}{{blog_post.featured_image}}" alt="{{blog_post.title}}" />
+    {% endif %}
+    {% endblock %}
+
+    <!-- {% if settings.COMMENTS_DISQUS_SHORTNAME %}
+    {% include "generic/includes/disqus_counts.html" %}
+    {% endif %} -->
+    <div class="row">
+        <div class="grid-14 pt-15 pl-15 b-400 x-center">
+            {% block blog_post_detail_sharebuttons %}
+            {% set_short_url_for blog_post %}
+            <a class="btn btn-sm share-twitter" target="_blank" href="http://twitter.com/home?status={{ request.build_absolute_uri }}%20{{ blog_post.title|urlencode }}">
+                <i class="flaticon_2-social19"></i>&nbsp;&nbsp;{% trans "Tweet" %}
+            </a>
+            <a class="btn btn-sm share-facebook" target="_blank" href="http://facebook.com/sharer.php?u={{ request.build_absolute_uri }}&amp;t={{ blog_post.title|urlencode }}">
+                <i class="flaticon_2-facebook12"></i>&nbsp;&nbsp;{% trans "Share" %}
+            </a>
+            <a class="btn share-google" href="https://plus.google.com/share?url={{ request.build_absolute_uri }}" target="_blank">
+                <i class="flaticon_2-google116"></i>  
+                <span class="fb-le hidden-xs">{% trans "Google Plus" %}</span>
+            </a>
+            {% endblock %}
+        </div>
+    </div>
+    
+    {% block blog_post_detail_content %}
+    {% editable blog_post.content %}
+    <div class="grid-13 pl-15 pr-15 pb-15 b-400 x-center blog-content">
+        {{ blog_post.content|richtext_filters|safe }}
+    </div>
+    
+    {% endeditable %}
+    {% endblock %}
+
+    
+    <div class="grid-13 p-15 b-400 x-center">
+
+    <div class="row">
+        {% block blog_post_detail_keywords %}
+        {% keywords_for blog_post as tags %}
+        {% if tags %}
+        {% spaceless %}
+        <ul class="list-inline tags">
+            <li>{% trans "Tags" %}:</li>
+            {% for tag in tags %}
+            <li><a href="{% url "blog_post_list_tag" tag.slug %}">{{ tag }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endspaceless %}
+        {% endif %}
+        {% endblock %}
+    </div>
+
+    {% block blog_post_detail_related_posts %}
+        {% if blog_post.related_posts.all %}
+            <div id="related-posts">
+                <h3>{% trans 'Also See' %}</h3>
+                <ul class="list-unstyled clearfix">
+                    {% for post in blog_post.related_posts.all %}
+                        <li class="grid-1-3 m-5">
+                            <a href="{{ post.get_absolute_url }}">
+                                <img class="img-responsive" src="{{ MEDIA_URL }}{{post.featured_image}}" alt="{{post.title}}">
+                                <span>{{ post.title }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    <div id="disqus_thread" class="clearfix mt-35 pt-20"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'aptuzblog'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    <!-- {% block blog_post_detail_comments %}
+    {% if blog_post.allow_comments %}
+        {% block blog_post_detail_commentlink %}
+            <p class="bold rem f-24">
+            {% if blog_post.allow_comments %}
+                {% if settings.COMMENTS_DISQUS_SHORTNAME %}
+                    <a href="{{ blog_post.get_absolute_url }}#disqus_thread"
+                        data-disqus-identifier="{% disqus_id_for blog_post %}">{% spaceless %}
+                        {% trans "Comments" %}
+                    {% endspaceless %}</a>
+                {% else %}<a href="#comments">{% spaceless %}
+                    {% blocktrans count comments_count=blog_post.comments_count %}
+                        ({{ comments_count }}) comment
+                    {% plural %}
+                        ({{ comments_count }}) comments
+                    {% endblocktrans %}
+                    {% endspaceless %}</a>
+                {% endif %}
+            {% endif %}
+            </p>
+        {% endblock %}    
+        
+    {% endif %}
+    {% endblock %}
+     --></div>
+    </div>
+
+</div>
+{% block blog_post_previous_next %}
+    {% with blog_post.get_previous_by_publish_date as previous %}
+        {% if previous %}
+            <a href="{{ previous.get_absolute_url }}" class="post prev-post shadow">
+                <i class="flaticon_2-chevron20"></i>
+                <span class='shadow under' title="{{previous}}">
+                    {% if previous|make_list|length > 25 %}
+                        {{previous|truncatechars:25}}...
+                    {% else %}
+                        {{previous}}
+                    {% endif %}
+                </span>
+
+            </a>
+        {% endif %}
+    {% endwith %}
+    {% with blog_post.get_next_by_publish_date as next %}
+        {% if next %}
+            <a href="{{ next.get_absolute_url }}" class="post next-post shadow">
+                <i class="flaticon_2-chevron18"></i>
+                <span class='shadow under' title="{{next}}">
+                    {% if next|make_list|length > 25 %}
+                        {{next|truncatechars:25}}...
+                    {% else %}
+                        {{next}}
+                    {% endif %}
+                </span>
+            </a>
+        {% endif %}
+    {% endwith %}
+{% endblock %}
+</section>
+{% endblock %}
+{% block extra_js %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            hljs.configure({
+                tabReplace: '&emsp;', // 4 spaces
+                // classPrefix: 'aptz'     // don't append class prefix
+                // … other options aren't changed
+            });
+            $('pre').each(function(i, e) {hljs.highlightBlock(e)});
+        });
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'aptuzblog'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+{% endblock %}

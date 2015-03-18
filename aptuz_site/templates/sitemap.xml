@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% load keyword_tags %}
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+{% spaceless %}
+    <url>
+        <loc>http://www.aptuz.com</loc>
+        <changefreq>always</changefreq>
+        <priority>1.0</priority>
+    </url>
+{% for url in urlset %}
+    <url>
+        <loc>{{ url.location }}</loc>
+        {% if url.lastmod %}<lastmod>{{ url.lastmod|date:"Y-m-d" }}</lastmod>{% endif %}
+        {% if url.changefreq %}<changefreq>{{ url.changefreq }}</changefreq>{% endif %}
+        {% if url.priority %}<priority>{{ url.priority }}</priority>{% endif %}
+    </url>
+{% endfor %}
+{% endspaceless %}
+</urlset>

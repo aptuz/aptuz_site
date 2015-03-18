@@ -1,0 +1,59 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags %}
+{% load static %}
+{% block main %}{{ block.super }}
+<section>
+{% if page.title == "Contact Us" %}
+	<p class="mt-0">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.4066751716396!2d78.39972699999997!3d17.440239000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91447502a14d%3A0xe77a3a3207985ab2!2sAptuz+Technology+Solutions!5e0!3m2!1sen!2sin!4v1423564243754"></iframe>
+    </p>
+{% endif %}
+{% if page.title == "Services" %}
+	<div class="intro" style="background-image:url('{% static "img/services.jpg"%}')">
+        <div class="overlay">
+            <div class="cover pos-a xy-center txt-center">
+                <h1 class="b-300">Our <span>Services</span></h1>
+                <a href="#" class="btn lmore">Learn More...</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if page.title == "Technology" %}
+    <div class="intro" style="background-image:url('{% static "img/technology.jpg"%}')">
+        <div class="overlay">
+            <div class="cover pos-a xy-center txt-center">
+                <h1 class="b-300">Technology <span>We Use</span></h1>
+                <a href="#" class="btn lmore">Learn More...</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if page.title == "Career" %}
+    <div class="intro" style="background-image:url('{% static "img/Careers1.jpg"%}')">
+        <div class="overlay">
+            <div class="cover pos-a xy-center txt-center">
+                <h1 class="b-300">Our <span>Career</span></h1>
+                <a href="#" class="btn lmore">Learn More...</a>
+            </div>
+        </div>
+    </div>
+{% endif%}
+{% if page.title == "About Us" %}
+    <div class="intro" style="background-image:url('{% static "img/about.jpg"%}')">
+        <div class="overlay">
+            <div class="cover pos-a xy-center txt-center">
+                <h1 class="b-300">About <span>Us</span></h1>
+                <a href="#" class="btn lmore">Learn More...</a>
+            </div>
+        </div>
+    </div>
+{% endif%}
+<section class="container">
+	{% editable page.richtextpage.content %}
+	{{ page.richtextpage.content|richtext_filters|safe }}
+	{% endeditable %}
+</section>
+</section>
+
+{% endblock %}
