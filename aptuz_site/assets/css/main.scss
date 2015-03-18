@@ -201,7 +201,7 @@ $google:#c95035;
  		font-size: 1.125rem;
  		@include my-margin(mt,1,rem);
  		@include my-margin(mb,1,rem);
- 		line-height: 1.75;
+ 		line-height: 1.5;
  	}
  	.btn{
  		display : inline-block;
@@ -599,7 +599,7 @@ $google:#c95035;
 	.post-cover{
 		height: 222px;
 		background-repeat: no-repeat;
-		background-size: cover;
+		background-size: 100% 100%;
 		background-position: 50% 25%;
 	}
 	.tags li{
