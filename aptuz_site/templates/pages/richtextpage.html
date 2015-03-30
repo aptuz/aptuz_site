@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-{% endif%}
+{% endif %}
 <section class="container">
 	{% editable page.richtextpage.content %}
 	{{ page.richtextpage.content|richtext_filters|safe }}
@@ -56,4 +56,62 @@
 </section>
 </section>
 
+{% endblock %}
+{% block testmon %}
+    {% if page.title == "About Us" %}
+        <div class="container mt-30 mb-30 p-20 testmon">
+            <h2 class="txt-center rem f-36 red mb-20 testmon--header">See What Our Customers Says About Us!</h2>
+            <div class="row testmon--body">
+                <ul class="testmon--detail">
+                    <li>
+                        <p class="rem f-18">
+                            Our work with Sagar Potluru and his team at Aptuz Technology Solutions for Wingate by Wyndham, New Braunfels resulted in a net increase of 8 percent revenue in the first 3 months.  That was beyond our expectations in terms of revenue increase. 
+                        </p>
+                        <p class="txt-center">
+                            <a href="https://www.linkedin.com/pub/nagi-patibandla/1/653/722" target="_blank">
+                                <span class="red rem f-16 bold">
+                                    Nagi Patibandla
+                                </span>
+                                <span class="rem f-14 fg-lite-black">
+                                    Managing Partner, Dolomite Holdings, LLC
+                                </span>
+                                <!-- <span class="rating star-5"></span> -->
+                            </a>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="rem f-18">
+                            Aptuz developed fully automated vehicle tracking system by using mobile technology, which is the first of its kind in India. Workshop efficiency increased by 20% after implementing this in our workshop and we are also seeing a good improvement in our Customer Satisfaction score.
+                        </p>
+                        <p class="txt-center">
+                            <a href="https://www.linkedin.com/pub/harsha-hanumara/3/9a9/a18" target="_blank">
+                                <span class="red rem f-16 bold">
+                                    Harsha Hanumara
+                                </span>
+                                <span class="rem f-14 fg-lite-black">
+                                    Director at Neon Motors Pvt Ltd &amp; Olive Auto Pvt Ltd
+                                </span>
+                                <!-- <span class="rating star-5"></span> -->
+                            </a>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="rem f-18">
+                            We thank <a href="https://www.linkedin.com/pub/yaswanth-yashu/52/746/b28" class="under">Yaswanth</a> and <a href="https://www.linkedin.com/pub/partha-saradhi-reddy/93/881/281" class="under">Pardha Saradhi</a> at Aptuz Team for their wonderful efforts in product development.
+                        </p>
+                        <p class="txt-center">
+                            <a href="https://www.feazt.com/" target="_blank">
+                                <span class="red rem f-16 bold">
+                                    Gopi KrishnaKishore
+                                </span>
+                                <span class="rem f-14 fg-lite-black">
+                                    Founder &amp; CEO at Feazt Interactive Systems pvt. Ltd
+                                </span>
+                            </a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endif%}
 {% endblock %}

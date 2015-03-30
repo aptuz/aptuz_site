@@ -60,6 +60,12 @@ p {
 .bg-red {
   background-color: #e74d3c; }
 
+.fg-lite-black {
+  color: #a0a0a1; }
+
+.bg-lite-black {
+  background-color: #a0a0a1; }
+
 .shadow {
   -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
@@ -245,17 +251,17 @@ section {
     margin: 5px;
     border-radius: 3px; }
     section .mW-3 .mW-3-1 > div:nth-child(1) {
-      border: 2px solid #981a21; }
+      border: 2px solid #092e20; }
       section .mW-3 .mW-3-1 > div:nth-child(1) h3 {
-        color: #981a21; }
+        color: #092e20; }
     section .mW-3 .mW-3-1 > div:nth-child(2) {
       border: 2px solid #eeba37; }
       section .mW-3 .mW-3-1 > div:nth-child(2) h3 {
         color: #eeba37; }
     section .mW-3 .mW-3-1 > div:nth-child(3) {
-      border: 2px solid #092e20; }
+      border: 2px solid #b52e31; }
       section .mW-3 .mW-3-1 > div:nth-child(3) h3 {
-        color: #092e20; }
+        color: #b52e31; }
 
 .iC i {
   color: white;
@@ -811,17 +817,17 @@ img + p {
 .tg-h:nth-of-type(1) div:nth-of-type(1) {
   background-color: #2d618c; }
 .tg-h:nth-of-type(2) div:nth-of-type(1) {
-  background-color: #981a21; }
-.tg-h:nth-of-type(3) div:nth-of-type(1) {
   background-color: #092e20; }
+.tg-h:nth-of-type(3) div:nth-of-type(1) {
+  background-color: #b52e31; }
 .tg-h:nth-of-type(4) div:nth-of-type(1) {
-  background-color: #B52E31; }
+  background-color: #a0a0a1; }
 .tg-h:nth-of-type(5) div:nth-of-type(1) {
-  background-color: #3f3f3f; }
+  background-color: #3b2f63; }
 .tg-h:nth-of-type(6) div:nth-of-type(1) {
-  background-color: #6762a6; }
+  background-color: #eeba37; }
 .tg-h:nth-of-type(7) div:nth-of-type(1) {
-  background-color: #ff9900; }
+  background-color: #6d6d6d; }
 
 /*
  ---------------------------Footer---------------------------*/
@@ -865,8 +871,16 @@ table {
     display: inline-block; }
 
   .cWrap {
-    margin-top: -80px; } }
+    margin-top: -80px; }
+
+  .testmon--body {
+    height: 280px; }
+    .testmon--body .testmon--detail li p:first-child {
+      max-height: 95px; } }
 @media (min-width: 1px) and (max-width: 768px) {
+  header {
+    padding: 10px; }
+
   .mW-3-1 > div, .mW-3-2 > div {
     margin: 10px 0px; }
 
@@ -989,3 +1003,20 @@ table {
 
 .img-thumbnail {
   width: 100%; }
+
+.testmon .testmon--body {
+  box-shadow: inset 0px 8px 6px -6px rgba(0, 0, 0, 0.3), inset 0px -8px 6px -6px rgba(0, 0, 0, 0.3); }
+  .testmon .testmon--body .testmon--detail {
+    padding-top: 2.5rem; }
+    .testmon .testmon--body .testmon--detail li {
+      display: block;
+      width: 100%;
+      padding: 0px 3.125rem; }
+      .testmon .testmon--body .testmon--detail li p {
+        color: #818181; }
+        .testmon .testmon--body .testmon--detail li p:first-child {
+          line-height: 1.75; }
+        .testmon .testmon--body .testmon--detail li p:last-child {
+          padding-top: 1.875em; }
+        .testmon .testmon--body .testmon--detail li p span {
+          display: block; }

@@ -21,7 +21,7 @@ def direct_to_template(request, template, extra_context=None, **kwargs):
             context[key] = value()
 
     posts = []
-    latest_post = BlogPost.objects.all().order_by('-created')[0:3]
+    latest_post = BlogPost.objects.filter(status = 2).order_by('-created')[0:3]
     for post in latest_post:
         posts.append(post.__dict__)
     context["posts"] = posts
